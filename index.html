@@ -2,9 +2,345 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>MEFI - Frequência</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MEFI | Controle de Frequência</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>MEFI - Controle de Frequência</h1>
+
+    <header class="topbar">
+        <div class="header-content">
+
+            <div class="brand">
+                <span class="brand-small">MEFI</span>
+                <h1>Controle de Frequência</h1>
+            </div>
+
+            <div class="connection-status">
+                <span class="status-dot"></span>
+                <span>Online</span>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- APRESENTAÇÃO -->
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <span class="section-label">
+                    MATEMÁTICA É FÁCIL, CONECTANDO SABERES
+                </span>
+
+                <h2>
+                    Controle de frequência
+                </h2>
+
+                <p>
+                    Registre a presença dos alunos e acompanhe
+                    automaticamente as horas e a frequência.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ESTATÍSTICAS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Oficinas
+                </span>
+
+                <strong id="totalOficinas">
+                    12
+                </strong>
+
+                <small>
+                    oficinas previstas
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Alunos
+                </span>
+
+                <strong id="totalAlunos">
+                    0
+                </strong>
+
+                <small>
+                    cadastrados
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Horas máximas
+                </span>
+
+                <strong>
+                    48h
+                </strong>
+
+                <small>
+                    por aluno
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- REGISTRO DE FREQUÊNCIA -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        FREQUÊNCIA
+                    </span>
+
+                    <h3>
+                        Registrar presença
+                    </h3>
+
+                    <p>
+                        Escolha a turma e a oficina para registrar
+                        a frequência.
+                    </p>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <div class="filter-group">
+
+                        <label for="turmaSelect">
+                            Turma
+                        </label>
+
+                        <select id="turmaSelect">
+
+                            <option value="1">
+                                Turma 1
+                            </option>
+
+                            <option value="2">
+                                Turma 2
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="oficinaSelect">
+                            Oficina
+                        </label>
+
+                        <select id="oficinaSelect">
+
+                            <option value="1">
+                                Oficina 1 — 15/08/2026
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LISTA DE ALUNOS -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Aluno
+                            </th>
+
+                            <th>
+                                Presença
+                            </th>
+
+                            <th>
+                                Horas
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="attendanceTable">
+
+                        <tr>
+
+                            <td colspan="3" class="empty-state">
+
+                                Nenhum aluno cadastrado ainda.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESUMO -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RELATÓRIO
+                    </span>
+
+                    <h3>
+                        Resumo dos alunos
+                    </h3>
+
+                    <p>
+                        Acompanhe as horas e a frequência acumuladas.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="refreshButton"
+                    class="button secondary"
+                >
+                    Atualizar
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Aluno
+                            </th>
+
+                            <th>
+                                Turma
+                            </th>
+
+                            <th>
+                                Presenças
+                            </th>
+
+                            <th>
+                                Faltas
+                            </th>
+
+                            <th>
+                                Horas
+                            </th>
+
+                            <th>
+                                Frequência
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="summaryTable">
+
+                        <tr>
+
+                            <td colspan="6" class="empty-state">
+
+                                Nenhum aluno cadastrado ainda.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            MEFI • Sistema de Controle de Frequência
+        </p>
+
+    </footer>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- CONFIGURAÇÃO -->
+
+    <script src="js/config.js"></script>
+
+    <!-- SISTEMA -->
+
+    <script src="js/app.js"></script>
+
 </body>
+
 </html>
